@@ -11,6 +11,8 @@ from lib.util import execute_stdout, get_electron_version, safe_mkdir, \
                      update_node_modules, update_electron_modules
 
 
+print("MAGIC HERE!!")
+print(__file__)
 SOURCE_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 

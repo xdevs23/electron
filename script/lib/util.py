@@ -259,6 +259,7 @@ def set_clang_env(env):
 
 
 def update_electron_modules(dirname, target_arch, nodedir):
+  print(dirname)
   env = os.environ.copy()
   version = get_electron_version()
   env['npm_config_arch']    = target_arch
