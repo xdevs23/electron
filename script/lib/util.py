@@ -178,6 +178,10 @@ def execute_stdout(argv, env=os.environ, cwd=None):
   if is_verbose_mode():
     print ' '.join(argv)
     try:
+      print("EXECUTING:")
+      print("pCWD: ", cwd)
+      print("CWD: ", os.getcwd())
+      print("ARGV", argv)
       subprocess.check_call(argv, env=env, cwd=cwd)
     except subprocess.CalledProcessError as e:
       print e.output
@@ -265,7 +269,9 @@ def update_electron_modules(dirname, target_arch, nodedir):
   env['npm_config_arch']    = target_arch
   env['npm_config_target']  = version
   env['npm_config_nodedir'] = nodedir
+  print("UPDATE NODE")
   update_node_modules(dirname, env)
+  print("EXECUTE")
   execute_stdout([NPM, 'rebuild'], env, dirname)
 
 
@@ -277,6 +283,8 @@ def update_node_modules(dirname, env=None):
     set_clang_env(env)
     env['npm_config_clang'] = '1'
   with scoped_cwd(dirname):
+    print("NPM INSTALL")
+    print("CWD: " + os.getcwd())
     args = [NPM, 'install']
     if is_verbose_mode():
       args += ['--verbose']
