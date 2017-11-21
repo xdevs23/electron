@@ -168,7 +168,11 @@ def execute(argv, env=os.environ, cwd=None):
     print("EXECUTING:")
     print("CWD: ", os.getcwd())
     print("ARGV:", argv)
-    output = subprocess.check_output(argv, stderr=subprocess.STDOUT, env=env, cwd=cwd)
+    output = ""
+    if cwd is None:
+      output = subprocess.check_output(argv, stderr=subprocess.STDOUT, env=env)
+    else:
+      output = subprocess.check_output(argv, stderr=subprocess.STDOUT, env=env, cwd=cwd)
     if is_verbose_mode():
       print output
     return output
