@@ -16,6 +16,7 @@
 #include "base/run_loop.h"
 #include "base/threading/thread_task_runner_handle.h"
 #include "brightray/browser/brightray_paths.h"
+#include "brightray/common/application_info.h"
 
 namespace atom {
 
@@ -120,6 +121,7 @@ std::string Browser::GetName() const {
 
 void Browser::SetName(const std::string& name) {
   name_override_ = name;
+  brightray::OverrideApplicationName(name);
 }
 
 int Browser::GetBadgeCount() {

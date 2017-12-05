@@ -11,7 +11,6 @@
 #include <shlobj.h>
 #include <vector>
 
-#include "atom/browser/browser.h"
 #include "base/strings/utf_string_conversions.h"
 #include "brightray/browser/notification_delegate.h"
 #include "brightray/browser/win/notification_presenter_win.h"
@@ -28,15 +27,6 @@ using ABI::Windows::Data::Xml::Dom::IXmlNodeList;
 using ABI::Windows::Data::Xml::Dom::IXmlText;
 
 namespace brightray {
-
-namespace {
-
-bool GetAppUserModelId(ScopedHString* app_id) {
-  app_id->Reset(atom::api::Browser::Get()->GetAppUserModelID());
-  return app_id->success();
-}
-
-}  // namespace
 
 // static
 ComPtr<ABI::Windows::UI::Notifications::IToastNotificationManagerStatics>
@@ -60,7 +50,7 @@ bool WindowsToastNotification::Initialize() {
     return false;
 
   ScopedHString app_id;
-  if (!GetAppUserModelId(&app_id))
+  if (!GetAppUserModelID(&app_id))
     return false;
 
   return SUCCEEDED(
