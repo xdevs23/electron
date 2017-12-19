@@ -520,6 +520,12 @@ preferred over `name` by Electron.
 
 Overrides the current application's name.
 
+### `app.setLocale(locale)`
+
+* `locale` String - possible values are any one of [these](locales.md).
+
+Set the current application locale.
+
 ### `app.getLocale()`
 
 Returns `String` - The current application locale. Possible return values are documented

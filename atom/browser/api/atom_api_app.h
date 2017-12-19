@@ -183,7 +183,8 @@ class App : public AtomBrowserClient::Delegate,
                const std::string& name,
                const base::FilePath& path);
 
-  void SetDesktopName(const std::string& desktop_name);
+  void SetDesktopName(const std::string& desktop_name
+  void SetLocale(std::string locale);
   std::string GetLocale();
   bool MakeSingleInstance(
       const ProcessSingleton::NotificationCallback& callback);
