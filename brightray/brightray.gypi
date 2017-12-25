@@ -261,6 +261,8 @@
               # can be removed at link time with --gc-sections.
               '-fdata-sections',
               '-ffunction-sections',
+              # Matches Chromium.
+              '-fPIC',
             ],
             'ldflags': [
               # Specifically tell the linker to perform optimizations.
@@ -268,6 +270,8 @@
               '-Wl,-O1',
               '-Wl,--as-needed',
               '-Wl,--gc-sections',
+              # Matches Chromium.
+              '-fPIC',
             ],
           }],  # OS=="linux"
         ],
