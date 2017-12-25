@@ -223,7 +223,8 @@
       'Release_Base': {
         'abstract': 1,
         'defines': [
-          'NDEBUG',
+          'DEBUG',
+          '_DEBUG',
         ],
         'msvs_settings': {
           'VCCLCompilerTool': {
@@ -251,23 +252,17 @@
         'conditions': [
           ['OS=="linux"', {
             'cflags': [
-              '-O2',
+              '-O0',
               # Generate symbols, will be stripped later.
               '-g',
               # Don't emit the GCC version ident directives, they just end up
               # in the .comment section taking up binary size.
-              '-fno-ident',
               # Put data and code in their own sections, so that unused symbols
               # can be removed at link time with --gc-sections.
-              '-fdata-sections',
-              '-ffunction-sections',
             ],
             'ldflags': [
               # Specifically tell the linker to perform optimizations.
               # See http://lwn.net/Articles/192624/ .
-              '-Wl,-O1',
-              '-Wl,--as-needed',
-              '-Wl,--gc-sections',
             ],
           }],  # OS=="linux"
         ],
