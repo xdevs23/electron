@@ -132,6 +132,12 @@
               '_LARGEFILE64_SOURCE',
               '_FILE_OFFSET_BITS=64',
             ],
+            'cflags': [
+              '-fno-strict-aliasing',
+              '-fstack-protector',
+              '-fomit-frame-pointer',
+              '--param=ssp-buffer-size=4',
+            ],
             'cflags_cc': [
               '-D__STRICT_ANSI__',
               '-fno-rtti',
@@ -265,6 +271,11 @@
               # See http://lwn.net/Articles/192624/ .
             ],
           }],  # OS=="linux"
+          ['OS=="linux" and target_arch=="mips64el"', {
+            'cflags': [
+              '-mxgot',
+            ],
+          }],  # OS=="linux" target_arch=="mips64el"
         ],
       },  # Release_Base
       'conditions': [
