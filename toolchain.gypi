@@ -111,7 +111,7 @@
       ],
       'target_defaults': {
         'cflags_cc': [
-          '-std=c++11',
+          '-std=gnu++11',
         ],
         'xcode_settings': {
           'CC': '<(make_clang_dir)/bin/clang',
@@ -145,7 +145,7 @@
       ],
       'target_defaults': {
         'cflags_cc': [
-          '-std=c++11',
+          '-std=gnu++11',
         ],
       },
     }],
