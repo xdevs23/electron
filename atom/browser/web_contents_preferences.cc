@@ -240,6 +240,11 @@ bool WebContentsPreferences::IsPluginsEnabled(
   return IsPreferenceEnabled("plugins", web_contents);
 }
 
+bool WebContentsPreferences::UsesSafeDialogs(
+    content::WebContents* web_contents) {
+  return IsPreferenceEnabled("safeDialogs", web_contents);
+}
+
 bool WebContentsPreferences::DisablePopups(
     content::WebContents* web_contents) {
   return IsPreferenceEnabled("disablePopups", web_contents);
