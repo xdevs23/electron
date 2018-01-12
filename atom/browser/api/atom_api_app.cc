@@ -31,6 +31,7 @@
 #include "base/strings/string_util.h"
 #include "base/sys_info.h"
 #include "brightray/browser/brightray_paths.h"
+#include "brightray/browser/browser_client.h"
 #include "chrome/browser/browser_process.h"
 #include "chrome/browser/icon_manager.h"
 #include "chrome/common/chrome_paths.h"
@@ -48,6 +49,7 @@
 #include "net/ssl/client_cert_identity.h"
 #include "net/ssl/ssl_cert_request_info.h"
 #include "ui/base/l10n/l10n_util.h"
+#include "ui/base/resource/resource_bundle.h"
 #include "ui/gfx/image/image.h"
 
 #if defined(OS_WIN)
@@ -850,9 +852,14 @@ void App::SetDesktopName(const std::string& desktop_name) {
 #endif
 }
 
-// TODO(codebytere)
 void App::SetLocale(std::string locale) {
-  std::string locale = cmd.GetSwitchValueASCII(switches::kLang);
+  // reload chromium resources
+  ResourceBundle& rb = ResourceBundle::GetSharedInstance();
+  rb.ReloadLocaleResources(locale);
+
+  // reload internal resources
+  BrowserClient::SetApplicationLocale(locale);
+  g_browser_process->SetApplicationLocale(locale);
   return;
 }
 
