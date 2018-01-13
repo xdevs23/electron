@@ -858,7 +858,7 @@ void App::SetLocale(std::string locale) {
   rb.ReloadLocaleResources(locale);
 
   // reload internal resources
-  BrowserClient::SetApplicationLocale(locale);
+  brightray::BrowserClient::SetApplicationLocale(locale);
   g_browser_process->SetApplicationLocale(locale);
   return;
 }
