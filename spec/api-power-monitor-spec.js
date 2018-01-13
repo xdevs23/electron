@@ -10,7 +10,7 @@ const assert = require('assert')
 const dbus = require('dbus-native')
 const Promise = require('bluebird')
 
-const skip = process.platform !== 'linux' || !process.env.DBUS_SYSTEM_BUS_ADDRESS;
+const skip = process.platform !== 'linux' || !process.env.DBUS_SYSTEM_BUS_ADDRESS
 
 (skip ? describe.skip : describe)('powerMonitor', () => {
   let logindMock, powerMonitor, getCalls, emitSignal, reset
