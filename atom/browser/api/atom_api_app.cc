@@ -853,13 +853,17 @@ void App::SetDesktopName(const std::string& desktop_name) {
 }
 
 void App::SetLocale(std::string locale) {
-  // reload chromium resources
-  ResourceBundle& rb = ResourceBundle::GetSharedInstance();
-  rb.ReloadLocaleResources(locale);
+  std::string fallback_locale = g_browser_process->GetApplicationLocale();
 
-  // reload internal resources
-  brightray::BrowserClient::SetApplicationLocale(locale);
-  g_browser_process->SetApplicationLocale(locale);
+  ResourceBundle& rb = ResourceBundle::GetSharedInstance();
+  std::string loaded_locale = rb.ReloadLocaleResources(locale);
+
+  if (loaded_locale != "") {
+    brightray::BrowserClient::SetApplicationLocale(locale);
+    g_browser_process->SetApplicationLocale(locale);
+  } else {
+    rb.ReloadLocaleResources(fallback_locale);
+  }
   return;
 }
 
